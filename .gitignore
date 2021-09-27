@@ -168,6 +168,6 @@ dist
 .ionide
 
 # Google credentials (all json)
-credentials.json
+google-credentials.json
 
 # End of https://www.toptal.com/developers/gitignore/api/node,macos,visualstudiocode
