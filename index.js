@@ -51,7 +51,7 @@ app.post(
 
     const client = await auth.getClient()
     const googleSheets = google.sheets({ version: 'v4', auth: client })
-    const spreadsheetId = '19HPmiRlSvMG4fm36HSkWjLrxsbIS_KRe1DzCDnosVh8'
+    const spreadsheetId = '1ym2cBoikffl9LobJix_o4dXyCxe2zbjZ87Gjl8ugehc'
 
     // Write to Google Sheet
     await googleSheets.spreadsheets.values.append({
@@ -64,7 +64,7 @@ app.post(
       }
     })
 
-    res.status(200).json({ message: 'signup success' })
+    res.status(200).json({ message: 'success' })
   })
 
 app.listen(port, () => {
