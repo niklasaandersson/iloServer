@@ -39,7 +39,7 @@ app.post(
     }
     const { country, employees, revenue, name, company, phone, email } = req.body
     res.status(200).json({ message: 'signup success' })
-
+    /*
     // Open connection to Google Sheets.
 
     const auth = new google.auth.GoogleAuth({
@@ -61,6 +61,7 @@ app.post(
         values: [[country, employees, revenue, name, company, phone, email]]
       }
     })
+    */
   })
 
 app.listen(port, () => {
