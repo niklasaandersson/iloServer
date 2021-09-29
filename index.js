@@ -1,4 +1,5 @@
 const express = require('express')
+const helmet = require('helmet')
 const logger = require('morgan')
 var cors = require('cors')
 const { body, validationResult } = require('express-validator')
@@ -8,20 +9,23 @@ const { google } = require('googleapis')
 const app = express()
 require('dotenv').config()
 
+app.use(helmet())
 app.use(cors({ origin: ['http://localhost:3000', 'https://rebuildingbetter.netlify.app'] }))
 app.use(logger('dev'))
 app.use(express.json())
 
-/*
-app.use((req, res, next) => {
-  res.setHeader('Content-Type', 'application/json')
-  next()
-})
-*/
-
-app.get('/', function (req, res) {
-  res.send('hello world')
-})
+// This disables the `contentSecurityPolicy` middleware but keeps the rest.
+app.use(helmet.contentSecurityPolicy({
+  referrerPolicy: { policy: 'no-referrer' },
+  contentSecurityPolicy: false,
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+    imgSrc: ["'self'", 'data:'],
+    connectSrc: ["'self'"]
+  }
+}))
 
 app.post(
   '/submit',
