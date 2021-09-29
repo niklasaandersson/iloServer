@@ -1,5 +1,6 @@
 const express = require('express')
 const logger = require('morgan')
+var cors = require('cors')
 const { body, validationResult } = require('express-validator')
 const port = 9000
 const { google } = require('googleapis')
@@ -7,6 +8,7 @@ const { google } = require('googleapis')
 const app = express()
 require('dotenv').config()
 
+app.use(cors({ origin: ['http://localhost:3000', 'https://rebuildingbetter.netlify.app'] }))
 app.use(logger('dev'))
 app.use(express.json())
 
